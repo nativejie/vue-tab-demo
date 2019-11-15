@@ -8,12 +8,12 @@
                     :key="index"
                     @click="handleChange(index)"
                 >
-                    <a href="#">{{item.label}}</a>
+                    {{item.label}}
                 </li>
             </ul>
 			<div class="active-bar-link bar-animated" :style="barStyle"></div>
         </div>
-        <div class="tab-panel" ref="panels" :style="{'marginLeft': panelMarginLeft}">
+        <div class="tab-panel" ref="panels" :style="contentStyle">
             <slot></slot>
         </div>
     </div>
@@ -25,7 +25,6 @@ export default {
         return {
             navList: [],
             activeKey: this.value,
-			panelMarginLeft: "0",
 			barWidth: 0,
 			barOffset: 0
         };
@@ -50,13 +49,18 @@ export default {
 			}
 			style.transform = `translate3d(${this.barOffset}px, 0px, 0px)`;
 			return style;
+		},
+		contentStyle(){
+			const index = this.getTabIndex(this.activeKey);
+			return {'margin-left': index>0 ?`-${index}00%`:0};
 		}
 	},
     mounted() {},
     methods: {
         handleChange(index) {
             this.activeKey = this.navList[index].name;
-			this.panelMarginLeft = `-${index * 100}%`;
+			const nav = this.navList[index];
+			this.$emit('tab-click', nav.name)
         },
         tabCls(item) {
             return [

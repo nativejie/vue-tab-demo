@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div style="width: 500px;margin: 0 auto">
-      <Tabs>
+      <Tabs v-model="value" @tab-click="handleClick">
         <TabPanel label="Tab1" name="T1">aaaaaaaaaaaaaaaaaa</TabPanel>
         <TabPanel label="Tab2" name="T2">bbbbbbbbbbbbbbbbbb</TabPanel>
         <TabPanel label="Tab3" name="T3">cccccccccccccccccc</TabPanel>
@@ -22,7 +22,12 @@ export default {
   },
   data(){
     return {
-      
+      value: 'T2'
+    }
+  },
+  methods: {
+    handleClick(name){
+      console.log(name)
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div  :class="panelCls()">
+  <div :class="panelCls()">
     <slot></slot>
   </div>
 </template>
