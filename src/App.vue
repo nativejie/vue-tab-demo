@@ -1,17 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div style="width: 500px;margin: 0 auto">
+      <Tabs>
+        <TabPanel label="Tab1" name="T1">aaaaaaaaaaaaaaaaaa</TabPanel>
+        <TabPanel label="Tab2" name="T2">bbbbbbbbbbbbbbbbbb</TabPanel>
+        <TabPanel label="Tab3" name="T3">cccccccccccccccccc</TabPanel>
+      </Tabs>
+    </div>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Tabs from './components/Tabs'
+import TabPanel from './components/TabPanel'
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Tabs,
+    TabPanel
+  },
+  data(){
+    return {
+      
+    }
   }
 }
 </script>
