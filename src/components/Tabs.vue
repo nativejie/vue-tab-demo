@@ -7,11 +7,9 @@
                     v-for="(item, index) in navList"
                     :key="index"
                     @click="handleChange(index)"
-                >
-                    {{item.label}}
-                </li>
+                >{{item.label}}</li>
             </ul>
-			<div class="active-bar-link bar-animated" :style="barStyle"></div>
+            <div class="active-bar-link bar-animated" :style="barStyle"></div>
         </div>
         <div class="tab-panel" ref="panels" :style="contentStyle">
             <slot></slot>
@@ -25,8 +23,8 @@ export default {
         return {
             navList: [],
             activeKey: this.value,
-			barWidth: 0,
-			barOffset: 0
+            barWidth: 0,
+            barOffset: 0
         };
     },
     props: {
@@ -37,30 +35,30 @@ export default {
     },
     watch: {
         activeKey() {
-			this.updateStatus();
-			this.updateBar();
+            this.updateStatus();
+            this.updateBar();
         }
     },
     computed: {
-		barStyle(){
-			let style = {
-				visibility: 'visible',
-				width: `${this.barWidth}px`
-			}
-			style.transform = `translate3d(${this.barOffset}px, 0px, 0px)`;
-			return style;
-		},
-		contentStyle(){
-			const index = this.getTabIndex(this.activeKey);
-			return {'margin-left': index>0 ?`-${index}00%`:0};
-		}
-	},
+        barStyle() {
+            let style = {
+                visibility: "visible",
+                width: `${this.barWidth}px`
+            };
+            style.transform = `translate3d(${this.barOffset}px, 0px, 0px)`;
+            return style;
+        },
+        contentStyle() {
+            const index = this.getTabIndex(this.activeKey);
+            return { "margin-left": index > 0 ? `-${index}00%` : 0 };
+        }
+    },
     mounted() {},
     methods: {
         handleChange(index) {
             this.activeKey = this.navList[index].name;
-			const nav = this.navList[index];
-			this.$emit('tab-click', nav.name)
+            const nav = this.navList[index];
+            this.$emit("tab-click", nav.name);
         },
         tabCls(item) {
             return [
@@ -94,25 +92,27 @@ export default {
                         this.activeKey = panel.currentName || index;
                 }
             });
-			this.updateStatus();
-			this.updateBar();
+            this.updateStatus();
+            this.updateBar();
         },
         updateBar() {
             this.$nextTick(() => {
                 const index = this.getTabIndex(this.activeKey);
-				if (!this.$refs.nav) return;
-				const prevTabs = this.$refs.nav.querySelectorAll('.tab-item-title');
-				const tab = prevTabs[index];
-				this.barWidth = tab? parseFloat(tab.offsetWidth): 0;
-				if(index > 0){
-					let offset = 0;
-					for(let i = 0;i < index;i++){
-						offset += prevTabs[i].offsetWidth
-					}
-					this.barOffset = offset;
-				}else{
-					this.barOffset = 0;
-				}
+                if (!this.$refs.nav) return;
+                const prevTabs = this.$refs.nav.querySelectorAll(
+                    ".tab-item-title"
+                );
+                const tab = prevTabs[index];
+                this.barWidth = tab ? parseFloat(tab.offsetWidth) : 0;
+                if (index > 0) {
+                    let offset = 0;
+                    for (let i = 0; i < index; i++) {
+                        offset += prevTabs[i].offsetWidth;
+                    }
+                    this.barOffset = offset;
+                } else {
+                    this.barOffset = 0;
+                }
             });
         },
         getTabIndex(name) {
@@ -163,14 +163,14 @@ a:visited {
     zoom: 1;
 }
 
-.tab-header{
-	border-bottom: 1px solid #e8e8e8;
+.tab-header {
+    border-bottom: 1px solid #e8e8e8;
 }
 
 .tab-item {
     list-style: none;
     padding-inline-start: 0;
-	margin-block-end: 0;
+    margin-block-end: 0;
 }
 
 .tab-item > .tab-item-title {
@@ -190,7 +190,6 @@ a:visited {
     color: #1890ff;
 }
 
-
 .tab-item > .tab-item-title::before {
     content: "";
     position: absolute;
@@ -200,17 +199,26 @@ a:visited {
     width: 0;
 }
 
-.active-bar-link{
-	background-color: #1890ff;
+.active-bar-link {
+    background-color: #1890ff;
     height: 2px;
-	clear: both;
+    clear: both;
 }
 
-.active-bar-link.bar-animated{
-	-webkit-transition: width .3s cubic-bezier(.645, .045, .355, 1),left .3s cubic-bezier(.645, .045, .355, 1),-webkit-transform .3s cubic-bezier(.645, .045, .355, 1);
-    transition: width .3s cubic-bezier(.645, .045, .355, 1),left .3s cubic-bezier(.645, .045, .355, 1),-webkit-transform .3s cubic-bezier(.645, .045, .355, 1); 
-    transition: transform .3s cubic-bezier(.645, .045, .355, 1),width .3s cubic-bezier(.645, .045, .355, 1),left .3s cubic-bezier(.645, .045, .355, 1); 
-    transition: transform .3s cubic-bezier(.645, .045, .355, 1),width .3s cubic-bezier(.645, .045, .355, 1),left .3s cubic-bezier(.645, .045, .355, 1),-webkit-transform .3s cubic-bezier(.645, .045, .355, 1); 
+.active-bar-link.bar-animated {
+    -webkit-transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+        -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .tab-item > .tab-item-title.tab-active > a {
