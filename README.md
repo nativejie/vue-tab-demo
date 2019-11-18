@@ -1,5 +1,8 @@
 # 介绍
-使用Vue开发的一个简单的Tab组件，还在完善中。
+使用Vue开发的一个简单的Tab组件Demo，还在不断完善中。
+
+[个人博客](https://www.qinayu.cn/)
+
 # 项目启动
 
 ## Project setup
