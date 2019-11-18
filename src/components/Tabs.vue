@@ -70,7 +70,7 @@ export default {
                 }
             ];
         },
-        getNavs() {
+        getPanels() {
             const TabPanels = this.$children.filter(
                 item => item.$options.name === "TabPanel"
             );
@@ -83,7 +83,7 @@ export default {
         },
         updateNav() {
             this.navList = [];
-            this.getNavs().forEach((panel, index) => {
+            this.getPanels().forEach((panel, index) => {
                 this.navList.push({
                     label: panel.label,
                     name: panel.name || index
@@ -119,7 +119,7 @@ export default {
             return this.navList.findIndex(nav => nav.name === name);
         },
         updateStatus() {
-            const navs = this.getNavs();
+            const navs = this.getPanels();
             navs.forEach(
                 tab => (tab.show = tab.currentName === this.activeKey)
             );
